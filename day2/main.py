@@ -51,6 +51,8 @@ class Food:
 #functions
 def next_turn(snake, food):
     #this function is called when we begin the game to see where the snake will turn
+
+    #x,y gets coordinates of HEAD of the snake
     x,y = snake.coordinates[0]
 
     if direction == "up":
@@ -75,9 +77,25 @@ def next_turn(snake, food):
     #update snakes list of squares. insert at index 0 the new square 
     snake.squares.insert(0, square)
 
-    del snake.coordinates[-1]
-    canvas.delete(snake.squares[-1])
-    del snake.squares[-1]
+
+    #if head of snake x,y overlaps the coordinates of the food object then eat food
+    if x == food.coordinates[0] and y == food.coordinates[1]:
+        #to access a variable in functions use global
+        global score
+        score +=1
+
+        #now show the score increment on label
+        label.config(text="Score:{}".format(score))
+        #delete the food object. this uses the TAG
+        canvas.delete("food")
+
+        #create a new food object
+        food = Food()
+    #if no food eaten then delete the last part of the snake
+    else:
+        del snake.coordinates[-1]
+        canvas.delete(snake.squares[-1])
+        del snake.squares[-1]
 
     #call turn again - not actual function() just the name
     root.after(SPEED, next_turn, snake, food)
