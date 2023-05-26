@@ -3,12 +3,12 @@ import random
 
 #declaring the constant variables for the game
 
-WIDTH = 450
-HEIGHT = 450
-SPEED = 40
+WIDTH = 700
+HEIGHT = 700
+SPEED = 50
 
 #size is the dimension of one box square (item) on the board
-SIZE = 25
+SIZE = 50
 SNAKE_PARTS = 3
 SNAKE_COLOR = '#58AB9A'
 FOOD_COLOR = '#587BAB'
@@ -27,7 +27,7 @@ class Snake:
             self.coordinates.append([0,0])
         
         for x, y in self.coordinates:
-            square = canvas.create_rectangle(x,y, x+SIZE, y+SIZE, fill = SNAKE_COLOR, tag="snake")
+            square = canvas.create_rectangle(x, y, x+SIZE, y+SIZE, fill = SNAKE_COLOR, tag="snake")
             self.squares.append(square)
 
 class Food:
@@ -48,11 +48,40 @@ class Food:
         canvas.create_oval(x,y, x+ SIZE, y + SIZE, fill = FOOD_COLOR, tag="food")
 
 
-
-
 #functions
-def next_turn():
-    pass
+def next_turn(snake, food):
+    #this function is called when we begin the game to see where the snake will turn
+    x,y = snake.coordinates[0]
+
+    if direction == "up":
+        #move up one pixel
+        y -= SIZE
+
+    elif direction == "down":
+        y += SIZE
+
+    elif direction == "left":
+        x -= SIZE
+
+    elif direction =="right":
+        x+=SIZE
+
+    #update coordinates x,y
+    snake.coordinates.insert(0,(x,y))
+    
+    #new graphic for snake
+    square = canvas.create_rectangle(x, y, x+SIZE, y+SIZE, fill=SNAKE_COLOR)
+
+    #update snakes list of squares. insert at index 0 the new square 
+    snake.squares.insert(0, square)
+
+    del snake.coordinates[-1]
+    canvas.delete(snake.squares[-1])
+    del snake.squares[-1]
+
+    #call turn again - not actual function() just the name
+    root.after(SPEED, next_turn, snake, food)
+
 
 def change_directions(direction):
     pass
@@ -82,8 +111,11 @@ canvas = Canvas(root, bg = BACK_COLOR, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
 
-#Call constructors
+#Call constructor to start game
 snake = Snake()
 food = Food()
+
+#call the next_turn function to start the game
+next_turn(snake, food)
 
 root.mainloop()
