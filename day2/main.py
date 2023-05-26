@@ -83,8 +83,20 @@ def next_turn(snake, food):
     root.after(SPEED, next_turn, snake, food)
 
 
-def change_directions(direction):
-    pass
+def change_directions(new_direction):
+
+    global direction
+
+    #no 180 turns
+    if new_direction == 'left' and direction != 'right':
+        direction = new_direction
+    elif new_direction == 'right' and direction != 'left':
+        direction = new_direction 
+    elif new_direction == 'up' and direction != 'down':
+        direction = new_direction
+    elif new_direction == 'down' and direction != 'up':
+        direction = new_direction
+    
 
 def check_cols():
     pass
@@ -109,6 +121,15 @@ label.pack()
 #gameboard 
 canvas = Canvas(root, bg = BACK_COLOR, height=HEIGHT, width=WIDTH)
 canvas.pack()
+
+
+#arrow keys
+root.bind('<Left>', lambda event: change_directions('left'))
+root.bind('<Right>', lambda event: change_directions('right'))
+root.bind('<Up>', lambda event: change_directions('up'))
+root.bind('<Down>', lambda event: change_directions('down'))
+
+
 
 
 #Call constructor to start game
