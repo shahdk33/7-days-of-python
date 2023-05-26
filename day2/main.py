@@ -12,12 +12,12 @@ import random
 
 #declaring the constant variables for the game
 
-WIDTH = 700
-HEIGHT = 700
-SPEED = 50
+WIDTH = 500
+HEIGHT = 500
+SPEED = 60
 
 #size is the dimension of one box square (item) on the board
-SIZE = 50
+SIZE = 20
 SNAKE_PARTS = 3
 SNAKE_COLOR = '#58AB9A'
 FOOD_COLOR = '#587BAB'
@@ -136,11 +136,23 @@ def check_cols(snake):
 
     #check if head crossed left or right
     if x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT:
-        print("GAME OVER")
         return True
+    
+    #check if head touches tail or body part ([1:] means anything after 0,1 which is head)
+    for body_part in snake.coordinates[1:]:
+        #if head coordinates = body_part coordinates then reurn True
+        if(x == body_part[0] and y == body_part[1]):
+            print("GAME OVER")
+            return True
+        
+    return False
 
 def game_over():
-    pass
+    #show game over sign
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2,canvas.winfo_height()/2, font=('Arial', 50), text="GAME OVER", fill="red")
+
+    #button to try again
 
 #making the gui window
 root = Tk()

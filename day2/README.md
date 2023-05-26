@@ -5,6 +5,13 @@
 ## Main goal 
 experiment with python GUI and get familiar with python basics by making a simple  game
 
+## Areas of Improvement for future work 
+
+1. high score system
+2. button to restart or play again after game over
+3. better UI rather than just squares and circles
+
+
 ## Citations
 
 I followed along a youtube video by Bro Code (Youtube) to help me get started understanding how to use GUI in python for this specific project
