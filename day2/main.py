@@ -91,14 +91,19 @@ def next_turn(snake, food):
 
         #create a new food object
         food = Food()
-    #if no food eaten then delete the last part of the snake
+    #if no food eaten then delete the last part of the snake (to keep it constant and not never-ending)
     else:
         del snake.coordinates[-1]
         canvas.delete(snake.squares[-1])
         del snake.squares[-1]
+    
+    #check collisions
+    if check_cols(snake):
+        game_over()
 
-    #call turn again - not actual function() just the name
-    root.after(SPEED, next_turn, snake, food)
+    else:
+        #call turn again - not actual function() just the name
+        root.after(SPEED, next_turn, snake, food)
 
 
 def change_directions(new_direction):
@@ -116,8 +121,14 @@ def change_directions(new_direction):
         direction = new_direction
     
 
-def check_cols():
-    pass
+def check_cols(snake):
+    #head of snake
+    x, y = snake.coordinates[0]
+
+    #check if head crossed left or right
+    if x < 0 or x >= WIDTH or y < 0 or y >= HEIGHT:
+        print("GAME OVER")
+        return True
 
 def game_over():
     pass
