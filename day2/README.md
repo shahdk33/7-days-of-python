@@ -15,4 +15,4 @@ May 26 2023,
 
 'Python snake game 🐍'
 Youtube Video,
-[Link to video](https://www.youtube.com/watch?v=NzSCNjn4_RI)
+[Link to video](https://www.youtube.com/watch?v=bfRwxS5d0SI)

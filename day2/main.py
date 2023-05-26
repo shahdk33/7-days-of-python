@@ -1,3 +1,12 @@
+'''
+Code modified from:
+Bro Code Youtube Channel
+May 26 2023
+'Python snake game 🐍'
+Youtube Video
+URL: https://www.youtube.com/watch?v=bfRwxS5d0SI
+'''
+
 from tkinter import *
 import random
 
