@@ -1,5 +1,7 @@
 # Day 1: Basic Calculator GUI
 
+# Date: May 25, 2023
+
 ## Main goal 
 experiment with python GUI and get familiar with python basics
 
