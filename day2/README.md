@@ -10,6 +10,7 @@ experiment with python GUI and get familiar with python basics by making a simpl
 1. high score system
 2. button to restart or play again after game over
 3. better UI rather than just squares and circles
+4. different difficulty options at the begining (which would be different snake speeds)
 
 
 ## Citations

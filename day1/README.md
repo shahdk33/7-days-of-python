@@ -5,6 +5,10 @@
 ## Main goal 
 experiment with python GUI and get familiar with python basics
 
+## Areas of Improvement for future work
+1. Better UI (spacing, colours, shapes, etc)
+2. decimal button instead of only whole numbers
+
 ## Citations
 
 I followed along a youtube video by NeuralNine to help me get started understanding how to use GUI in python for this specific project
