@@ -5,7 +5,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<h1>{}<h1>'.format(weather)
+    result = "<h3>The weather is: " + weather
+    result += "<br>The temperature is: " + str(temp)
+    result += "<br>The wind speed is: " + str(wind_speed) + "</h3>"
+    return '<h1>{}</h1>'.format(user_input) + result 
 
 api_key = '977574eb340eabbcd237c22c66a0d343'
 
