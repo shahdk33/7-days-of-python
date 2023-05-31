@@ -7,3 +7,4 @@ I want to create a chatbot which allows for users to input text and recieve a re
 
 ## Future Work
 1. Wider range of training data for more accurate responses
+2. Use APIs to give user actual updated information rather than hardcoded answers. For example building off of day3, the user can ask what is the weather like in {city} and it can return the information. 
