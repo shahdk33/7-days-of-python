@@ -16,7 +16,7 @@ user_input = input("Enter city: ")
 
 #weather data from url 
 weather_data = requests.get(
-    f"https://api.openweathermap.org/data/2.5/weather?q=halifax&APPID={api_key}")
+    f"https://api.openweathermap.org/data/2.5/weather?q=halifax&APPID={api_key}&units=metric")
 
 
 print(weather_data.status_code)
