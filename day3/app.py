@@ -19,11 +19,9 @@ weather_data = requests.get(
     f"https://api.openweathermap.org/data/2.5/weather?q=halifax&APPID={api_key}&units=metric")
 
 
-print(weather_data.status_code)
 weather = weather_data.json()['weather'][0]['main']
 temp = weather_data.json()['main']['temp']
 wind_speed = weather_data.json()['wind']['speed']
 wind_degree = weather_data.json()['wind']['deg']
 humidity = weather_data.json()['main']['humidity']
 
-# # print(weather, temp, wind_speed, wind_degree, humidity)
