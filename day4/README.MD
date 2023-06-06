@@ -3,5 +3,5 @@
 # Date: May 31, 2023
 
 ## Main goal 
-Understand the basics of django framework and compare to Flask from yesterday. 
+Very simple django website that says hello world. Thr goal is to work with the basics of django framework and compare to Flask from yesterday. 
 
