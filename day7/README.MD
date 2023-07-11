@@ -1,0 +1,1 @@
+Experimenting with web scraper usign BeautifulSoup to fetch and write to a file on Canadian weather.
