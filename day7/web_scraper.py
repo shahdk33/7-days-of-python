@@ -23,6 +23,10 @@ with open('weather.txt', 'w') as f:
             #Then fetch the temp (in cell 2)
             temperature = cells[2].get_text().strip()
 
+
+            #print out
+            print(f"{city}: {temperature}\n")
+            
             #write to the file
 
             f.write(f"{city}: {temperature}\n")
