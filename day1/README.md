@@ -1,6 +1,7 @@
 # Day 1: Basic Calculator GUI
-
-# Date: May 25, 2023
+## Description: 
+Date: May 25, 2023
+Simple Calculator application. Allows users to use basic mathematic calculations with  user interface.
 
 ## Main goal 
 experiment with python GUI and get familiar with python basics
