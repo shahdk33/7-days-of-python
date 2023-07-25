@@ -1,0 +1,5 @@
+Calgary: 18°C
+Halifax: 19°C
+Montréal: 28°C
+Toronto: 22°C
+Vancouver: 22°C
