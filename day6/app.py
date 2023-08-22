@@ -16,7 +16,7 @@ def get_recipes(ingredients):
         return None
 
 def main():
-    ingredients = input("ENTER INGREEDIENTS:").split(',')
+    ingredients = input("Hello, welcome to frij. Enter a list of ingredients separated with commas to get some recipe ideas:").split(',')
 
     ingredients = [ingredient.strip() for ingredient in ingredients]
 
@@ -25,8 +25,7 @@ def main():
     if recipes:
         for recipe in recipes:
             print("Title:", recipe['title'])
-            print("Image:", recipe['image'])
-            print("Used Ingredients:")
+#            print("Used Ingredients:")
             for ingredient in recipe['usedIngredients']:
                 print("-", ingredient['original'])
             print("Missed Ingredients:")
