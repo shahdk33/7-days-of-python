@@ -1,6 +1,7 @@
 // frontend/src/components/RecipeApp.js
 import React, { useState } from 'react';
-
+import '../App.css'; // Import CSS for styling
+import logo from '../assets/frij.png'
 function RecipeApp() {
     const [ingredients, setIngredients] = useState('');
     const [recipes, setRecipes] = useState([]);
@@ -9,7 +10,7 @@ function RecipeApp() {
 
     const fetchRecipes = async () => {
         try {
-            const response = await fetch('/recipes', {  // Only use the endpoint
+            const response = await fetch('/recipes', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ingredients: ingredients.split(',') }),
@@ -20,22 +21,46 @@ function RecipeApp() {
             console.error('Error fetching recipes:', error);
         }
     };
-    
-    
 
     return (
-        <div>
-            <h1>Recipe Finder</h1>
-            <input
-                type="text"
-                placeholder="Enter ingredients separated by commas"
-                value={ingredients}
-                onChange={handleInputChange}
-            />
-            <button onClick={fetchRecipes}>Get Recipes</button>
-            <div>
+        <div className="App">
+            {/* Navbar */}
+            <nav className="navbar">
+            <div className="navbar-logo">
+                    <img src={logo} alt="Logo" className="logo-img" /> {/* Logo image */}
+                </div>                
+                
+                <div className="navbar-links">
+                    <a href="#find-recipes">Find recipes</a>
+                    <a href="#how-it-works">How it works</a>
+                    <a href="#about-us">About us</a>
+                </div>
+            </nav>
+
+            {/* Header Section */}
+            <header className="header">
+                <h1>What you got in your <b>frij?</b></h1>
+                <p className="description">
+                    Enter ingredients you have on hand, and get recipe ideas tailored to you!
+                </p>
+            </header>
+
+            {/* Search Bar Section */}
+            <div className="search-container">
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Enter ingredients, separated by commas"
+                    value={ingredients}
+                    onChange={handleInputChange}
+                />
+                <button className="search-button" onClick={fetchRecipes}>Let's go</button>
+            </div>
+
+            {/* Recipe Results */}
+            <div className="recipes-container">
                 {recipes.map((recipe, index) => (
-                    <div key={index}>
+                    <div key={index} className="recipe-card">
                         <h2>{recipe.title}</h2>
                         <h3>Used Ingredients:</h3>
                         <ul>
