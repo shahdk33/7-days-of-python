@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import '../App.css'; // Import CSS for styling
 import logo from '../assets/frij.png'
+import foodImage from '../assets/HomeImage.png'
+
 function RecipeApp() {
     const [ingredients, setIngredients] = useState('');
     const [recipes, setRecipes] = useState([]);
@@ -38,6 +40,8 @@ function RecipeApp() {
             </nav>
 
             {/* Header Section */}
+            <div className="HomePage">
+            <div className="left-side">
             <header className="header">
                 <h1>What you got in your <b>frij?</b></h1>
                 <p className="description">
@@ -55,6 +59,12 @@ function RecipeApp() {
                     onChange={handleInputChange}
                 />
                 <button className="search-button" onClick={fetchRecipes}>Let's go</button>
+            </div>
+            </div>
+
+            <div className="right-side">
+                <img src={foodImage} className="mage"></img>
+            </div>
             </div>
 
             {/* Recipe Results */}
