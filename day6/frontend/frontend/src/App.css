@@ -1,6 +1,6 @@
 /* App.css */
 body {
-  background-color: #ffffff;
+  background-color: #f8f6ee;
   margin: 0;
   padding: 0;
 }
@@ -68,6 +68,10 @@ h1 > b{
   margin-top: 2rem;
 }
 
+h2, h3{
+  margin-left: 1rem;
+}
+
 .header h1 {
   font-size: 3rem;
   font-weight: 200;
@@ -106,22 +110,100 @@ h1 > b{
   font-weight: bold;
 }
 
+.time-to-make{
+  padding: 0.5rem 1.5rem;
+  background-color: #7d7d7d4c;
+  color: rgb(77, 77, 77);
+  margin-left: 1rem;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.get-recipe{
+  padding: 0.5rem 1.5rem;
+  background-color: #0097b2;
+  color: white;
+  margin-left: 1rem;
+  border-radius: 10px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 .search-button:hover {
   background-color: #056e81;
   transition: ease-in-out 0.2s;
 }
 
 .recipes-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
+  gap: 0px; /* Space between cards */
+  padding: 20px;  
   align-items: center;
   margin-top: 2rem;
+ 
 }
 
 .recipe-card {
-  background-color: #F3F3E0;
+  background-color: #ffffff;
   padding: 1rem;
   margin: 1rem;
-  border-radius: 8px;
+  border-radius: 20px;
   width: 60%;
 }
+
+.footer {
+  display: flex;
+  justify-content: space-between;  /* Place content on both sides */
+  background-color: #0097b2;  /* Dark blue background */
+  color: #F3F3E0;  /* Light text color */
+  padding: 20px;  /* Add space inside the footer */
+  position: relative;
+  bottom: 0;
+  max-width: 100%;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;  /* Stack the text vertically */
+  align-items: flex-start;
+  padding-left: 3rem; /* Align the text to the left */
+}
+
+.footer-left h2 {
+  margin: 0;
+  font-size: 20px;
+  font-family: 'Lilita One'; 
+}
+
+.footer-left p {
+  margin: 5px 0;
+  font-size: 14px;  /* Smaller text for copyright and company name */
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;  /* Stack the navigation links vertically */
+  align-items: flex-end; 
+  padding-right: 3rem; /* Align links to the right */
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;   /* Align the nav links to the right */
+}
+
+.footer-nav a {
+  color: #F3F3E0;         /* Light text color for links */
+  text-decoration: none;  /* Remove underline from links */
+  font-size: 16px;        /* Make the font a bit larger */
+  margin: 5px 0;          /* Add some vertical space between links */
+  transition: color 0.3s ease;  /* Smooth color transition on hover */
+}
+
+.footer-nav a:hover {
+  color: #CBDCEB;  /* Light blue color when hovered */
+}
+
+

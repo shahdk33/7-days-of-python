@@ -1,8 +1,8 @@
-// frontend/src/components/RecipeApp.js
 import React, { useState } from 'react';
 import '../App.css'; // Import CSS for styling
 import logo from '../assets/frij.png'
 import foodImage from '../assets/HomeImage.png'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 function RecipeApp() {
     const [ingredients, setIngredients] = useState('');
@@ -19,6 +19,7 @@ function RecipeApp() {
             });
             const data = await response.json();
             setRecipes(data);
+            console.log(data);
         } catch (error) {
             console.error('Error fetching recipes:', error);
         }
@@ -28,9 +29,9 @@ function RecipeApp() {
         <div className="App">
             {/* Navbar */}
             <nav className="navbar">
-            <div className="navbar-logo">
+                <div className="navbar-logo">
                     <img src={logo} alt="Logo" className="logo-img" /> {/* Logo image */}
-                </div>                
+                </div>
                 
                 <div className="navbar-links">
                     <a href="#find-recipes">Find recipes</a>
@@ -41,30 +42,30 @@ function RecipeApp() {
 
             {/* Header Section */}
             <div className="HomePage">
-            <div className="left-side">
-            <header className="header">
-                <h1>What you got in your <b>frij?</b></h1>
-                <p className="description">
-                    Enter ingredients you have on hand, and get recipe ideas tailored to you!
-                </p>
-            </header>
+                <div className="left-side">
+                    <header className="header">
+                        <h1>What you got in your <b>frij?</b></h1>
+                        <p className="description">
+                            Enter ingredients you have on hand, and get recipe ideas tailored to you!
+                        </p>
+                    </header>
 
-            {/* Search Bar Section */}
-            <div className="search-container">
-                <input
-                    type="text"
-                    className="search-input"
-                    placeholder="Enter ingredients, separated by commas"
-                    value={ingredients}
-                    onChange={handleInputChange}
-                />
-                <button className="search-button" onClick={fetchRecipes}>Let's go</button>
-            </div>
-            </div>
+                    {/* Search Bar Section */}
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            className="search-input"
+                            placeholder="Enter ingredients, separated by commas"
+                            value={ingredients}
+                            onChange={handleInputChange}
+                        />
+                        <button className="search-button" onClick={fetchRecipes}>Let's go</button>
+                    </div>
+                </div>
 
-            <div className="right-side">
-                <img src={foodImage} className="mage"></img>
-            </div>
+                <div className="right-side">
+                    <img src={foodImage} className="mage" alt="Food" />
+                </div>
             </div>
 
             {/* Recipe Results */}
@@ -72,22 +73,47 @@ function RecipeApp() {
                 {recipes.map((recipe, index) => (
                     <div key={index} className="recipe-card">
                         <h2>{recipe.title}</h2>
-                        <h3>Used Ingredients:</h3>
-                        <ul>
-                            {recipe.usedIngredients.map((ing, i) => (
-                                <li key={i}>{ing.original}</li>
-                            ))}
-                        </ul>
-                        <h3>Missed Ingredients:</h3>
+                        <h3>Other ingredients</h3>
                         <ul>
                             {recipe.missedIngredients.map((ing, i) => (
                                 <li key={i}>{ing.original}</li>
                             ))}
                         </ul>
+
+                        {/* Display Recipe Details */}
+                        {recipe.details && (
+                            <>
+                            <div className="time-to-make">
+                                <AccessTimeIcon style={{ marginBottom: -5 }} />  {/* Clock icon */}
+                            <span>{recipe.details.readyInMinutes} min</span>  {/* Time in minutes */}
+                        </div>
+                                {/* <p className="vegan-status">{recipe.details.vegan ? "Vegan" : "Not Vegan"}</p> */}
+                            </>
+                        )}
+                    <div className="get-recipe">
+                        <span className="get-recipe-button">Get recipe</span>
+                    </div>
                     </div>
                 ))}
             </div>
+
+            <footer className="footer">
+    <div className="footer-left">
+        <h2>frij</h2>
+        <p>© 2024</p>
+        <p>Shahd Khartabil</p>
+    </div>
+    <div className="footer-right">
+        <div className="footer-nav">
+            <a href="#find-recipes">Find Recipes</a>
+            <a href="#how-it-works">How it Works</a>
+            <a href="#about-us">About Us</a>
         </div>
+    </div>
+</footer>
+
+        </div>
+        
     );
 }
 
