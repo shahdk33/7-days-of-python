@@ -206,4 +206,11 @@ h2, h3{
   color: #CBDCEB;  /* Light blue color when hovered */
 }
 
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Adjust height as needed */
+  width: 100%;
+}
 

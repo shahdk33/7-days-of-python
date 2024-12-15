@@ -3,14 +3,18 @@ import '../App.css'; // Import CSS for styling
 import logo from '../assets/frij.png'
 import foodImage from '../assets/HomeImage.png'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { ClipLoader } from 'react-spinners';
 
 function RecipeApp() {
     const [ingredients, setIngredients] = useState('');
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(false); // Loading state
 
     const handleInputChange = (e) => setIngredients(e.target.value);
 
     const fetchRecipes = async () => {
+        setLoading(true); // Start loading
+
         try {
             const response = await fetch('/recipes', {
                 method: 'POST',
@@ -22,6 +26,8 @@ function RecipeApp() {
             console.log(data);
         } catch (error) {
             console.error('Error fetching recipes:', error);
+        }finally {
+            setLoading(false); // Stop loading
         }
     };
 
@@ -46,7 +52,7 @@ function RecipeApp() {
                     <header className="header">
                         <h1>What you got in your <b>frij?</b></h1>
                         <p className="description">
-                            Enter ingredients you have on hand, and get recipe ideas tailored to you!
+                            Enter ingredients you have on hand, and get recipes ideas tailored to you!
                         </p>
                     </header>
 
@@ -61,12 +67,22 @@ function RecipeApp() {
                         />
                         <button className="search-button" onClick={fetchRecipes}>Let's go</button>
                     </div>
+
+                    
+                        {/* Loading Indicator */}
+                        {loading && <div className="loading-container">
+                            <ClipLoader color="#133E87" size={50} />
+                                    </div>}
+                                    
                 </div>
 
                 <div className="right-side">
                     <img src={foodImage} className="mage" alt="Food" />
                 </div>
             </div>
+
+
+
 
             {/* Recipe Results */}
             <div className="recipes-container">
