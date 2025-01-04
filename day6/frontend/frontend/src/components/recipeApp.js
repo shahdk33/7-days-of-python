@@ -55,7 +55,7 @@ function RecipeApp() {
                     <header className="header">
                         <h1>What you got in your <b>frij?</b></h1>
                         <p className="description">
-                            Enter ingredients you have on hand, and get recipes ideas tailored to you!
+                            Enter ingredients you have on hand, <b>separated by commas</b> and get recipes ideas tailored to you!
                         </p>
                     </header>
 
@@ -64,7 +64,7 @@ function RecipeApp() {
                         <input
                             type="text"
                             className="search-input"
-                            placeholder="Enter ingredients, separated by commas"
+                            placeholder="Banana, apple, egg ..."
                             value={ingredients}
                             onChange={handleInputChange}
                         />
@@ -89,46 +89,56 @@ function RecipeApp() {
 
             {/* Recipe Results */}
             <div className="recipes-container">
-                {recipes.map((recipe, index) => (
-                    <div key={index} className="recipe-card">
-                        <h2>{recipe.title}</h2>
-                        <h3>Other ingredients</h3>
-                        <ul>
-                            {recipe.missedIngredients.map((ing, i) => (
-                                <li key={i}>{ing.original}</li>
-                            ))}
-                        </ul>
+            {recipes.map((recipe, index) => (
+  <div key={index} className="recipe-card">
+    {recipe.image && (
+      <div className="recipe-card-image">
+        <img src={recipe.image} alt={recipe.title} className="recipe-img" />
+      </div>
+    )}
+    <div className="recipe-card-content">
+      <h2 className="recipe-title">{recipe.title}</h2>
+      <div className="recipe-details">
+        <div className="time-to-make">
+          <AccessTimeIcon className="icon" /> 
+          <span>{recipe.details?.readyInMinutes} min</span>
+        </div>
+      </div>
+      <h3>Other Ingredients</h3>
+      <ul className="ingredients-list">
+        {recipe.missedIngredients.map((ing, i) => (
+          <li key={i}>{ing.original}</li>
+        ))}
+      </ul>
+      <a
+        href={recipe.details.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="recipe-button"
+      >
+        Get Recipe
+      </a>
+    </div>
+  </div>
+))}
 
-                        {/* Display Recipe Details */}
-                        {recipe.details && (
-                            <>
-                            <div className="time-to-make">
-                                <AccessTimeIcon style={{ marginBottom: -5 }} />  {/* Clock icon */}
-                            <span>{recipe.details.readyInMinutes} min</span>  {/* Time in minutes */}
-                        </div>
-                                {/* <p className="vegan-status">{recipe.details.vegan ? "Vegan" : "Not Vegan"}</p> */}
-                            </>
-                        )}
-                        <button className="get-recipe-button"><a href={recipe.details.url} target='blank'>Get recipe</a></button>
-                        {/* button endpoint: url with recipe id recipe.details.url*/}
-                    </div>
-                ))}
             </div>
 
             <footer className="footer">
-    <div className="footer-left">
-        <h2>frij</h2>
-        <p>© 2024</p>
-        <p>Shahd Khartabil</p>
-    </div>
-    <div className="footer-right">
-        <div className="footer-nav">
-            <a href="#find-recipes">Find Recipes</a>
-            <a href="#how-it-works">How it Works</a>
-            <a href="#about-us">About Us</a>
-        </div>
-    </div>
-</footer>
+                <div className="footer-left">
+                <h2>frij</h2>
+                <p>© 2024</p>
+                <p>Shahd Khartabil</p>
+                </div>
+                
+                <div className="footer-right">
+                    <div className="footer-nav">
+                        <Link to="/">Find recipes</Link>
+                        <Link to="/how-it-works">How it works</Link>
+                        <Link to="/about-us">About us</Link>
+                    </div>
+                </div>
+            </footer>
 
         </div>
         
