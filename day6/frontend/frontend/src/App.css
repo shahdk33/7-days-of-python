@@ -364,3 +364,10 @@ body::-webkit-scrollbar-thumb:hover {
 .recipe-button:hover {
   background-color: #056e81;
 }
+
+@media (max-width: 768px) {
+  .recipes-container {
+    grid-template-columns: 1fr;
+  }
+}
+
