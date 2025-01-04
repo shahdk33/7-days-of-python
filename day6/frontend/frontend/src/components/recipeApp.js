@@ -5,6 +5,8 @@ import foodImage from '../assets/HomeImage.png'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ClipLoader } from 'react-spinners';
 
+//TODO: Responsive design, get time to make, and get recipe onpress of get recipe button, and footer/nav links
+
 function RecipeApp() {
     const [ingredients, setIngredients] = useState('');
     const [recipes, setRecipes] = useState([]);
@@ -73,7 +75,7 @@ function RecipeApp() {
                         {loading && <div className="loading-container">
                             <ClipLoader color="#133E87" size={50} />
                                     </div>}
-                                    
+
                 </div>
 
                 <div className="right-side">
@@ -106,9 +108,8 @@ function RecipeApp() {
                                 {/* <p className="vegan-status">{recipe.details.vegan ? "Vegan" : "Not Vegan"}</p> */}
                             </>
                         )}
-                    <div className="get-recipe">
-                        <span className="get-recipe-button">Get recipe</span>
-                    </div>
+                        <button className="get-recipe-button"><a href={recipe.details.url} target='blank'>Get recipe</a></button>
+                        {/* button endpoint: url with recipe id recipe.details.url*/}
                     </div>
                 ))}
             </div>

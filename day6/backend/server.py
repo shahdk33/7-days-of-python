@@ -38,6 +38,7 @@ def recipes():
                 'dairyFree': details.get('dairyFree'),
                 'veryHealthy': details.get('veryHealthy'),
                 'image': details.get('image'),
+                'url': details.get('spoonacularSourceUrl')
             }
 
     return jsonify(recipes)

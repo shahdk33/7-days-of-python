@@ -7,6 +7,6 @@ Explore further with python and APIs to make a web app which is useful for my ev
 
 ## Getting Started
 npm start to run the frontend
-python app.py
+python server.py
 npm start
 
