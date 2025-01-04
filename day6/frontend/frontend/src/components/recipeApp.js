@@ -4,8 +4,9 @@ import logo from '../assets/frij.png'
 import foodImage from '../assets/HomeImage.png'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { ClipLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
-//TODO: Responsive design, get time to make, and get recipe onpress of get recipe button, and footer/nav links
+//TODO: Responsive design, and footer/nav links
 
 function RecipeApp() {
     const [ingredients, setIngredients] = useState('');
@@ -42,9 +43,9 @@ function RecipeApp() {
                 </div>
                 
                 <div className="navbar-links">
-                    <a href="#find-recipes">Find recipes</a>
-                    <a href="#how-it-works">How it works</a>
-                    <a href="#about-us">About us</a>
+                <Link to="/">Find recipes</Link>
+                <Link to="/how-it-works">How it works</Link>
+                <Link to="/about-us">About us</Link>
                 </div>
             </nav>
 
