@@ -32,7 +32,7 @@ function AboutUs() {
                     <header className="header">
                         <h1>About <b>Shahd</b></h1>
                         <p className="description">
-                        I’m <b>Shahd Khartabil</b>, the creator of frij. 
+                        I’m <b>Shahd Khartabil</b>, the designer and developer of frij. 
                         I’m passionate about combining technology and creativity to solve everyday problems. 
                         Let’s connect:
                         </p>

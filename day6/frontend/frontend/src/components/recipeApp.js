@@ -91,11 +91,7 @@ function RecipeApp() {
             <div className="recipes-container">
             {recipes.map((recipe, index) => (
   <div key={index} className="recipe-card">
-    {recipe.image && (
-      <div className="recipe-card-image">
-        <img src={recipe.image} alt={recipe.title} className="recipe-img" />
-      </div>
-    )}
+
     <div className="recipe-card-content">
       <h2 className="recipe-title">{recipe.title}</h2>
       <div className="recipe-details">
