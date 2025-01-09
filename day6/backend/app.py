@@ -1,41 +1,47 @@
+from flask import Flask, request, jsonify
 import requests
-import json
+
+app = Flask(__name__)
 
 def get_recipes(ingredients):
-
-    #make the ingredients a comma separated string
     query = ','.join(ingredients)
-
-    response = requests.get(f'https://api.spoonacular.com/recipes/findByIngredients?ingredients=y{query}&apiKey=ae8ea3c0c6034c468ef92d8cee28f4f4')
-    
+    response = requests.get(f'https://api.spoonacular.com/recipes/findByIngredients?ingredients={query}&apiKey=ae8ea3c0c6034c468ef92d8cee28f4f4')
     if response.status_code == 200:
-        recipes = response.json()
-        return recipes
+        return response.json()
     else:
-        print('Error')
-        return None
+        return {"error": "Failed to fetch recipes"}
+    
+def get_recipe_details(recipe_id):
+    response = requests.get(f'https://api.spoonacular.com/recipes/{recipe_id}/information?apiKey=ae8ea3c0c6034c468ef92d8cee28f4f4')
+    if response.status_code == 200:
+        return response.json()  # Returns detailed information such as time, vegan, nut-free, etc.
+    else:
+        return {"error": f"Failed to fetch details for recipe {recipe_id}"}
 
-def main():
-    ingredients = input("Hello, welcome to frij. Enter a list of ingredients separated with commas to get some recipe ideas:\n").split(',')
 
-    ingredients = [ingredient.strip() for ingredient in ingredients]
-
+@app.route('/recipes', methods=['POST'])
+def recipes():
+    ingredients = request.json.get("ingredients", [])
     recipes = get_recipes(ingredients)
 
-    if recipes:
-        for recipe in recipes:
-            print("Recipe:", recipe['title'])
-#            print("Used Ingredients:")
-            for ingredient in recipe['usedIngredients']:
-                print("-", ingredient['original'])
-            print("Missed Ingredients:")
-            for ingredient in recipe['missedIngredients']:
-                print("-", ingredient['original'])
-            print()
+    # using the id of the recipe fetched, get the details 
+    for recipe in recipes:
+        details = get_recipe_details(recipe['id'])
+        if isinstance(details, dict) and "error" in details:
+            recipe['details'] = details
+        else:
+            # Combine the original recipe data with the fetched details
+            recipe['details'] = {
+                'readyInMinutes': details.get('readyInMinutes'),
+                'vegan': details.get('vegan'),
+                'glutenFree': details.get('glutenFree'),
+                'dairyFree': details.get('dairyFree'),
+                'veryHealthy': details.get('veryHealthy'),
+                'image': details.get('image'),
+                'url': details.get('spoonacularSourceUrl')
+            }
 
-    else:
-        print("none found")
-
+    return jsonify(recipes)
 
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)
